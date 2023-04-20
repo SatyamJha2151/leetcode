@@ -1,0 +1,36 @@
+class Solution:
+    def fourSum(self, nums: list[int], target: int) -> list[list[int]]:
+        res = []
+        nums.sort()
+        i = 0
+        while i< len(nums):
+            j = i+1
+            while i+1 <= j < len(nums):
+                localTarget = target - nums[i] - nums[j]
+                front = j+1
+                back = len(nums)- 1
+                while front < back:
+                    twoSum = nums[front] + nums[back]
+                    if twoSum < localTarget:
+                        front += 1
+                    elif twoSum > localTarget:
+                        back -= 1
+                    else:
+                        quad = []
+                        quad.append(nums[i])
+                        quad.append(nums[j])
+                        quad.append(nums[front])
+                        quad.append(nums[back])
+                        res.append(quad)
+
+                        while front < back and nums[front] == quad[2]:
+                            front += 1
+                        while front < back and nums[back] == quad[3]:
+                            back -= 1
+                while j < len(nums)- 1 and nums[j+1] == nums[j]:
+                    j += 1
+                j += 1
+            while i < len(nums)- 1 and nums[i+1] == nums[i]:
+                i += 1
+            i += 1
+        return res
