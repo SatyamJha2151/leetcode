@@ -1,0 +1,33 @@
+class Solution:
+    def searchRange(self, nums: list[int], target: int) -> list[int]:
+        result = [Solution().first(nums, target), Solution().last(nums, target)]
+        return result
+    def first(self, nums, target) -> int:
+        left = 0
+        right = len(nums)- 1
+        res = -1
+        while left <= right:
+            mid = (left + right)//2
+            if nums[mid] > target:
+                right = mid-1
+            elif nums[mid] < target:
+                left = mid +1
+            else:
+                res = mid
+                right = mid -1
+        return res
+
+    def last(self, nums, target) -> int:
+        left = 0
+        right = len(nums) - 1
+        res = -1
+        while left <= right:
+            mid = (left + right)//2
+            if nums[mid] > target:
+                right = mid-1
+            elif nums[mid] < target:
+                left = mid +1
+            else:
+                res = mid
+                left = mid +1
+        return res
