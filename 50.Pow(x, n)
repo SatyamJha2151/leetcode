@@ -1,0 +1,12 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if(n == 0):
+            return 1
+        if(n<0):
+            x = 1/x
+            n = abs(n)
+        temp = Solution.myPow(self, x, int(n/2))
+        if n%2 == 0:
+            return temp*temp
+        else:
+            return temp*temp*x
