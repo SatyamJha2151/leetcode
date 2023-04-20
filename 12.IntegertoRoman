@@ -1,0 +1,29 @@
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        romanDict = {
+            1:"I",
+            5:"V",
+            10:"X",
+            50:"L",
+            100:"C",
+            500:"D",
+            1000:"M"
+        }
+        div = 1
+        while div <= num:
+            div *= 10
+        div //= 10
+        res = ""
+        while num:
+            i = num// div
+            if i < 4:
+                res += romanDict[div] *i
+            elif i == 4:
+                res += romanDict[div] + romanDict[div*5]
+            elif 5 <= i <= 8:
+                res += romanDict[div*5] + romanDict[div]*(i-5)
+            elif i ==9:
+                res += romanDict[div] + romanDict[div*10]
+            num = num% div
+            div //= 10
+        return res
