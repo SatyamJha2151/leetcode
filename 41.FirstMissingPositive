@@ -1,0 +1,8 @@
+class Solution:
+    def firstMissingPositive(self, nums: list[int]) -> int:
+        num_list = [False]*(len(nums)+2)
+        for i in range(len(nums)):
+            if 0 <= nums[i] < len(nums)+1:
+                num_list[nums[i]] = True
+        x = num_list[1::].index(False) + 1
+        return x
